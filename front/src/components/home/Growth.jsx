@@ -30,6 +30,21 @@ const GrowthAndCustomSection = () => {
     },
 ];
 
+  const handleSOSClick = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            alert(`Emergency SOS detected! Nearest Emergency Services alerted! Latitude: ${position.coords.latitude}\nLongitude: ${position.coords.longitude}`);
+          },
+          (error) => {
+            alert("Error retrieving location. Please enable location services.");
+          }
+        );
+      } else {
+        alert("Geolocation is not supported by your browser.");
+      }
+    };
+
   return (
     <div
       id="home"
@@ -63,6 +78,12 @@ const GrowthAndCustomSection = () => {
               Contact Us
             </span>
         </div>
+        <div><button
+          className="bg-red-600 mt-5 text-white text-xl font-bold px-6 py-3 rounded-lg shadow-lg hover:bg-red-700 transition-all"
+          onClick={handleSOSClick} // Call function on click
+        >
+          SOS !
+        </button></div>
       </div>
 
       {/* Custom Section */}

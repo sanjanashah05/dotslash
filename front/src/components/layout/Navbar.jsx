@@ -51,10 +51,11 @@ const Navbar = () => {
        px-4 lg:px-10 flex justify-between items-center fixed top-0 left-0 right-0 transition-all duration-300 z-50`}
     >
       {/* Logo */}
-      <div className={`${isScrolled ? "text-transparent" : "text-cyan-600"
-        } font-bold text-4xl `}>
+      
+      <button className={`${isScrolled ? "text-transparent" : "text-cyan-600"
+        } font-bold text-4xl`} onClick={() => router.push('/')}>
         NidaanAI
-      </div>
+      </button>
 
       {/* Desktop Navigation */}
       {router.pathname === "/" && (
@@ -67,6 +68,7 @@ const Navbar = () => {
           ))}
         </div>
       )}
+
 
       {/* Mobile Hamburger Button */}
       <button
@@ -96,6 +98,7 @@ const Navbar = () => {
           ))}
         </div>
       </div>
+      
 
       {/* Desktop "Get Help?" Button */}
 
@@ -120,10 +123,12 @@ const Navbar = () => {
           Login
         </Link> */}
       <a href="login">
-        <div className="bg-black border text-white px-6 sm:px-8 py-2 rounded-lg cursor-pointer">
+        <div className={`${isScrolled ? "bg-none" : "bg-black"
+        } text-white px-6 sm:px-8 py-2 rounded-lg cursor-pointer`}>
           Login
         </div>
       </a>
+      
 
     </div>
   );
