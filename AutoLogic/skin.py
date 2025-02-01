@@ -7,14 +7,12 @@ def detect_yellowish_percentage(image_path):
         print("Error: Unable to load image. Please check the file path.")
         return None
 
-    # Convert to HSV color space for better color segmentation
     hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
 
     
     lower_yellow = np.array([20, 100, 100])
     upper_yellow = np.array([30, 255, 255])
 
-    # Create a mask for yellowish regions
     yellow_mask = cv2.inRange(hsv_image, lower_yellow, upper_yellow)
 
     # cv2.imshow('yellow_mask', yellow_mask)
