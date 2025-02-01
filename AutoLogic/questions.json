@@ -1,0 +1,29 @@
+{
+    "initialQuestions": [
+      {
+        "id": 1,
+        "question": "Do you have any chronic illnesses?",
+        "type": "yesno"
+      },
+      {
+        "id": 2,
+        "question": "Do you experience frequent headaches?",
+        "type": "yesno"
+      },
+      {
+        "id": 3,
+        "question": "Are you currently taking any medications?",
+        "type": "yesno"
+      },
+      {
+        "id": 4,
+        "question": "Do you have any allergies?",
+        "type": "yesno"
+      },
+      {
+        "id": 5,
+        "question": "Have you had any surgeries in the past?",
+        "type": "yesno"
+      }
+    ]
+  }

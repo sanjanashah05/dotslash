@@ -7,3 +7,5 @@ numpy
 pandas
 scipy
 computer-vision
+Flask==2.3.2
+google-generativeai==0.1.0

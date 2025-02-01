@@ -146,9 +146,6 @@ const styles = {
     fontSize: '16px',
     transition: 'background-color 0.3s ease',
   },
-  uploadLabelHover: {
-    backgroundColor: '#005bb5',
-  },
   fileInput: {
     display: 'none',
   },
@@ -178,13 +175,6 @@ const styles = {
     cursor: 'pointer',
     fontSize: '16px',
     transition: 'background-color 0.3s ease',
-  },
-  analyzeButtonHover: {
-    backgroundColor: '#005bb5',
-  },
-  analyzeButtonDisabled: {
-    backgroundColor: '#ccc',
-    cursor: 'not-allowed',
   },
   resultContainer: {
     marginTop: '20px',
