@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import {Link} from "react-scroll";
+import { Link } from "react-scroll";
 import { CiLineHeight } from "react-icons/ci";
 import { RxCross2 } from "react-icons/rx";
 import { MdOutlineSegment } from "react-icons/md";
@@ -44,11 +44,26 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Function to get user's location and show an alert
+  const handleSOSClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          alert(`Latitude: ${position.coords.latitude}\nLongitude: ${position.coords.longitude}`);
+        },
+        (error) => {
+          alert("Error retrieving location. Please enable location services.");
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by your browser.");
+    }
+  };
+
   return (
     <div
       className={`${isVisible ? "translate-y-0" : "-translate-y-full"} ${isScrolled ? "bg-none" : "bg-none"
-        }
-       px-4 lg:px-10 flex justify-between items-center fixed top-0 left-0 right-0 transition-all duration-300 z-50`}
+        } px-4 lg:px-10 flex justify-between items-center fixed top-0 left-0 right-0 transition-all duration-300 z-50`}
     >
       {/* Logo */}
       
@@ -122,6 +137,14 @@ const Navbar = () => {
           {" "}
           Login
         </Link> */}
+      <div>
+        <button
+          className="bg-red-600 text-white text-xl font-bold px-6 py-3 rounded-full shadow-lg hover:bg-red-700 transition-all"
+          onClick={handleSOSClick} // Call function on click
+        >
+          SOS
+        </button>
+      </div>
       <a href="login">
         <div className={`${isScrolled ? "bg-none" : "bg-black"
         } text-white px-6 sm:px-8 py-2 rounded-lg cursor-pointer`}>

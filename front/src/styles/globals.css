@@ -75,3 +75,9 @@ body {
     animation-duration: 15s;
   }
 }
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
+}
