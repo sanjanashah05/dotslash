@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --font-oswald: "Oswald", sans-serif;
+    --font-space-grotesk: "Space Grotesk", sans-serif;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif;
+}
+
+.font-Oswald {
+  font-family: "Oswald", sans-serif;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.4) rgba(255, 255, 255, 0.1);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Keyframe animation to scroll the buttons from right to left */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Apply the scroll animation to the container */
+.scrolling-container {
+  display: flex;
+  animation: scroll-left 10s linear infinite;
+}
+
+@media (max-width: 768px) {
+  /* Adjust the speed of scrolling for smaller screens if needed */
+  .scrolling-container {
+    animation-duration: 15s;
+  }
+}
