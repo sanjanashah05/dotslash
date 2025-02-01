@@ -11,11 +11,11 @@ import {
   
   const menuItems = [
     { icon: HomeIcon, label: "Overview", active: true },
-    { icon: TrendingUpIcon, label: "Growth" },
-    { icon: UsersIcon, label: "Customers" },
-    { icon: FileTextIcon, label: "Reports" },
-    { icon: LifeBuoyIcon, label: "Support" },
-    { icon: Settings2Icon, label: "Settings" },
+    { icon: TrendingUpIcon, label: "ASKAI", lk:"/askai" },
+    { icon: UsersIcon, label: "FAQs", lk:"/faq" },
+    { icon: FileTextIcon, label: "Reports", lk:"#" },
+    { icon: LifeBuoyIcon, label: "Support" , lk:"#"},
+    { icon: Settings2Icon, label: "Settings", lk:"#" },
   ]
   
   export function Sidebar() {
@@ -27,7 +27,7 @@ import {
               <path fill="currentColor" d="M12 2L1 12h3v9h6v-6h4v6h6v-9h3L12 2z" />
             </svg>
           </div>
-          <span className="font-semibold text-lg">profitize</span>
+          <span className="font-semibold text-lg">NidaanAI</span>
         </div>
   
         <nav className="flex-1">
@@ -35,7 +35,7 @@ import {
             {menuItems.map((item) => (
               <li key={item.label}>
                 <a
-                  href="#"
+                  href={item.lk?item.lk : "#"}
                   className={cn(
                     "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium",
                     item.active ? "bg-zinc-800 text-white" : "text-zinc-400 hover:text-white hover:bg-zinc-800",
