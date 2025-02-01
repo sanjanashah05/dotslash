@@ -5,8 +5,7 @@ def detect_eye_redness(image_path):
     # Load the image
     image = cv2.imread(image_path)
     if image is None:
-        print("Error: Unable to load image. Please check the file path.")
-        return
+        return "Error: Unable to load image. Please check the file path."
 
     # Convert to grayscale for face/eye detection
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -17,6 +16,8 @@ def detect_eye_redness(image_path):
 
     # Detect faces
     faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
+
+    redness_detected = False
 
     for (x, y, w, h) in faces:
         roi_gray = gray[y:y+h, x:x+w]
@@ -34,19 +35,15 @@ def detect_eye_redness(image_path):
             # Calculate the average red intensity
             red_intensity = np.mean(r)
 
-            # Display results
+            # Check for redness
             if red_intensity > 150:  # Threshold for redness
-                print("Eye redness detected!")
-            else:
-                print("No significant redness detected.")
+                redness_detected = True
 
             # Draw a rectangle around the eye
             cv2.rectangle(roi_color, (ex, ey), (ex+ew, ey+eh), (0, 255, 0), 2)
 
-    # Show the output image
-    cv2.imshow("Eye Redness Detection", image)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
-
-# Test the function with an image
-detect_eye_redness("80.webp")
+    # Return the result
+    if redness_detected:
+        return "Eye redness detected!"
+    else:
+        return "No significant redness detected."
