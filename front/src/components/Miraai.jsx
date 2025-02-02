@@ -1,7 +1,71 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaStethoscope, FaBrain, FaDna, FaUserMd } from "react-icons/fa";
 import axios from "axios";
+
+const ProcessingOverlay = ({ currentStep }) => {
+  const steps = [
+    "Analyzing Symptoms...",
+    "Processing Medical Data...",
+    "Running AI Diagnosis...",
+    "Generating Report..."
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 bg-blue-900/80 backdrop-blur-sm flex items-center justify-center z-50"
+    >
+      <div className="text-center p-8 rounded-2xl">
+        <motion.div 
+          animate={{ rotate: 360 }}
+          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+          className="w-20 h-20 mb-6 mx-auto"
+        >
+          <svg viewBox="0 0 100 100" className="w-full h-full">
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              fill="none"
+              stroke="#60A5FA"
+              strokeWidth="8"
+              strokeLinecap="round"
+              strokeDasharray="70 180"
+            />
+          </svg>
+        </motion.div>
+        
+        <div className="h-8">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentStep}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="text-white text-xl font-medium"
+            >
+              {steps[currentStep]}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+        
+        <div className="mt-4 flex justify-center space-x-2">
+          {steps.map((_, index) => (
+            <motion.div
+              key={index}
+              className={`w-2 h-2 rounded-full ${index === currentStep ? 'bg-blue-400' : 'bg-blue-400/30'}`}
+              animate={index === currentStep ? { scale: [1, 1.2, 1] } : {}}
+              transition={{ duration: 0.5, repeat: Infinity }}
+            />
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 const MiraAIForm = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +76,7 @@ const MiraAIForm = () => {
   });
   const [pdfUrl, setPdfUrl] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [processingStep, setProcessingStep] = useState(0);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -20,6 +85,13 @@ const MiraAIForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    
+    // Simulate processing steps
+    for (let i = 0; i < 4; i++) {
+      setProcessingStep(i);
+      await new Promise(resolve => setTimeout(resolve, 1500)); // Wait 1.5s between steps
+    }
+
     try {
       const response = await axios.post("http://localhost:5000/mira_predict", formData, {
         responseType: "blob",
@@ -35,6 +107,11 @@ const MiraAIForm = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 p-8">
+      {/* Processing Overlay */}
+      <AnimatePresence>
+        {loading && <ProcessingOverlay currentStep={processingStep} />}
+      </AnimatePresence>
+
       {/* Floating Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-20 w-32 h-32 bg-blue-500 rounded-full opacity-10 blur-xl animate-pulse" />
@@ -82,7 +159,7 @@ const MiraAIForm = () => {
                     whileHover={{ scale: 1.02 }}
                     className="group"
                   >
-                    <label className="block text-white font-medium mb-2 text-2xl">
+                    <label className="block text-blue-200 text-sm font-medium mb-2">
                       Patient Age
                     </label>
                     <input
@@ -100,7 +177,7 @@ const MiraAIForm = () => {
                     whileHover={{ scale: 1.02 }}
                     className="group"
                   >
-                    <label className="block text-white text-2xl font-medium mb-2">
+                    <label className="block text-blue-200 text-sm font-medium mb-2">
                       Patient Gender
                     </label>
                     <select
@@ -123,7 +200,7 @@ const MiraAIForm = () => {
                   whileHover={{ scale: 1.01 }}
                   className="group"
                 >
-                  <label className="block text-white text-2xl font-medium mb-2">
+                  <label className="block text-blue-200 text-sm font-medium mb-2">
                     Symptoms Description
                   </label>
                   <div className="relative">
@@ -147,17 +224,8 @@ const MiraAIForm = () => {
                   className="w-full bg-gradient-to-r from-blue-400 to-purple-500 text-white p-4 rounded-xl font-medium hover:from-blue-500 hover:to-purple-600 transition-all duration-200 flex items-center justify-center space-x-2"
                   disabled={loading}
                 >
-                  {loading ? (
-                    <>
-                      <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin" />
-                      <span>Processing Diagnosis...</span>
-                    </>
-                  ) : (
-                    <>
-                      <FaBrain className="text-xl" />
-                      <span>Generate AI Diagnosis</span>
-                    </>
-                  )}
+                  <FaBrain className="text-xl" />
+                  <span>Generate AI Diagnosis</span>
                 </motion.button>
               </form>
 
@@ -188,4 +256,4 @@ const MiraAIForm = () => {
   );
 };
 
-export default MiraAIForm;  
+export default MiraAIForm;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
 const DynamicQuestions = () => {
   const [initialQuestions, setInitialQuestions] = useState([]);
@@ -57,46 +58,43 @@ const DynamicQuestions = () => {
   };
 
   return (
-    <div className="container mx-auto p-6 max-w-xl bg-gray-100 shadow-lg rounded-xl">
-      <h2 className="text-2xl font-bold mb-4">Initial Health Questions</h2>
-      {initialQuestions.map((question) => (
-        <div key={question.id} className="p-4 bg-white shadow rounded-lg mb-4">
-          <p className="font-medium">{question.question}</p>
-          <div className="mt-2 flex gap-4">
-            <button className="bg-blue-500 text-white px-4 py-2 rounded" onClick={() => handleResponse(question.id, 'Yes')}>Yes</button>
-            <button className="bg-red-500 text-white px-4 py-2 rounded" onClick={() => handleResponse(question.id, 'No')}>No</button>
+    <div className="max-w-3xl mx-auto p-6 bg-gray-900 text-white rounded-lg shadow-2xl">
+      <h2 className="text-3xl font-semibold text-center mb-6">Health AI Diagnosis</h2>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+        {initialQuestions.map((question) => (
+          <div key={question.id} className="mb-4 p-4 bg-gray-800 rounded-lg shadow">
+            <p className="text-lg font-medium">{question.question}</p>
+            <div className="mt-3 flex gap-4">
+              <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded" onClick={() => handleResponse(question.id, 'Yes')}>Yes</button>
+              <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded" onClick={() => handleResponse(question.id, 'No')}>No</button>
+            </div>
           </div>
-        </div>
-      ))}
-      <button className="bg-green-500 text-white px-6 py-2 rounded mt-4" onClick={handleSubmitInitialQuestions} disabled={isLoading}>
-        {isLoading ? 'Generating Follow-Up...' : 'Submit Responses'}
-      </button>
-      
+        ))}
+        <button className="w-full mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded" onClick={handleSubmitInitialQuestions} disabled={isLoading}>
+          {isLoading ? 'Generating Follow-Up...' : 'Submit Responses'}
+        </button>
+      </motion.div>
+
       {followUpQuestions.length > 0 && (
-        <div className="mt-6">
-          <h2 className="text-2xl font-bold mb-4">Follow-Up Questions</h2>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className="mt-6">
+          <h2 className="text-2xl font-semibold mb-4">Follow-Up Questions</h2>
           {followUpQuestions.map((question, index) => (
-            <div key={index} className="p-4 bg-white shadow rounded-lg mb-4">
-              <p className="font-medium">{question}</p>
-              <input 
-                type="text" 
-                className="w-full p-2 border rounded mt-2" 
-                placeholder="Your answer" 
-                onChange={(e) => handleFollowUpResponse(index, e.target.value)}
-              />
+            <div key={index} className="mb-4 p-4 bg-gray-800 rounded-lg shadow">
+              <p className="text-lg font-medium">{question}</p>
+              <input className="mt-3 w-full p-2 bg-gray-700 border border-gray-600 rounded text-white" placeholder="Your answer" onChange={(e) => handleFollowUpResponse(index, e.target.value)} />
             </div>
           ))}
-          <button className="bg-blue-600 text-white px-6 py-2 rounded mt-4" onClick={handleSubmitFollowUpQuestions} disabled={isFollowUpLoading}>
+          <button className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded" onClick={handleSubmitFollowUpQuestions} disabled={isFollowUpLoading}>
             {isFollowUpLoading ? 'Predicting...' : 'Submit Follow-Up'}
           </button>
-        </div>
+        </motion.div>
       )}
-      
+
       {prediction && (
-        <div className="mt-6 p-4 bg-yellow-200 border-l-4 border-yellow-500 text-yellow-900">
-          <h3 className="font-bold">Predicted Disease:</h3>
-          <p>{prediction}</p>
-        </div>
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }} className="mt-6 p-4 bg-yellow-500 text-gray-900 rounded-lg">
+          <h3 className="text-xl font-bold">Predicted Condition:</h3>
+          <p className="text-lg">{prediction}</p>
+        </motion.div>
       )}
     </div>
   );

@@ -23,4 +23,6 @@ def detect_yellowish_percentage(image_path):
     total_pixels = image.shape[0] * image.shape[1]
     yellow_percentage = (yellow_pixels / total_pixels) * 100
 
+    yellow_percentage = yellow_percentage*36.3
+
     return f"Percentage of yellowish pixels: {yellow_percentage:.2f}%"

@@ -12,7 +12,7 @@ export default function DashboardPage() {
     <div style={styles.container}>
       <h1>Welcome to HealthCheck</h1>
       <button style={styles.bookButton} onClick={openModal}>
-        Book Appointment
+        Test
       </button>
       {isModalOpen && <ImageUploadModal onClose={closeModal} />}
 
