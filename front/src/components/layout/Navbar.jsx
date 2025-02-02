@@ -137,14 +137,6 @@ const Navbar = () => {
           {" "}
           Login
         </Link> */}
-      <div>
-        <button
-          className="bg-red-600 text-white text-xl font-bold px-6 py-3 rounded-full shadow-lg hover:bg-red-700 transition-all"
-          onClick={handleSOSClick} // Call function on click
-        >
-          SOS
-        </button>
-      </div>
       <a href="login">
         <div className={`${isScrolled ? "bg-none" : "bg-black"
         } text-white px-6 sm:px-8 py-2 rounded-lg cursor-pointer`}>
