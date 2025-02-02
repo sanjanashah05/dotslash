@@ -28,9 +28,9 @@ export default function App({ Component, pageProps }) {
           rel="stylesheet"
         />
       </Head>
-      {!shouldHideLayout && <Navbar />}
+      {/* {!shouldHideLayout && <Navbar />} */}
       <Component {...pageProps} />
-      {!shouldHideLayout && <Footer />}
+      {/* {!shouldHideLayout && <Footer />} */}
     </div>
   );
 }

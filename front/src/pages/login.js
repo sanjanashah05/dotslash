@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import CaptchaDisplay from '@/components/CaptchaDisplay'
 
 const LoginPage = () => {
   const [username, setUsername] = useState('');
@@ -67,7 +68,9 @@ const LoginPage = () => {
           <div>
             <label className="block text-lg font-medium text-black mb-2">CAPTCHA verification</label>
             <div className="flex items-center space-x-3 mb-4">
-              <div className="px-4 py-2 bg-gray-800 text-white font-mono rounded-md">{captcha}</div>
+                <div className="w-48">
+                    <CaptchaDisplay text={captcha} />
+                </div>
               <button type="button" className="px-3 py-1 bg-indigo-600 text-white rounded-md" onClick={generateCaptcha}>Refresh</button>
             </div>
             <input type="text" className="text-black w-full p-2 border rounded-md" placeholder="Enter CAPTCHA" value={captchaInput} onChange={(e) => setCaptchaInput(e.target.value)} required />

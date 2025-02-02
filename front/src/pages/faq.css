@@ -1,0 +1,147 @@
+/* src/components/Help.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+.help-page {
+  font-family: 'Roboto', sans-serif;
+  background-color: #ffffff; /* White background for a clean, fresh look */
+}
+
+.body-content {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0faff; /* Light blue background for a healthcare, calming vibe */
+  padding: 20px;
+  color: #333333; /* Dark text for readability */
+}
+
+.intro h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #1d6fa5; /* Soft dark blue for a positive, professional look */
+}
+
+.search-box {
+  background-color: #d8e9f1; /* Light blue-gray background for a soft feel */
+  color: #333333;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.search-box p {
+  margin: 0 0 10px 0;
+}
+
+.featured-articles {
+  padding: 20px;
+}
+
+.featured-articles h1 {
+  margin-top: 0;
+  color: #1d6fa5; /* Blue header for sections */
+  font-size: 1.8rem;
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.accordion-item {
+  background-color: #ffffff; /* White background for items */
+  border: 1px solid #e0f1fa; /* Light blue border for a soft look */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.accordion-item:hover {
+  background-color: #e1f3fd; /* Light hover effect */
+  transform: scale(1.02);
+}
+
+.accordion-title {
+  font-weight: bold;
+  padding: 15px;
+  color: #1d6fa5; /* Blue text for titles */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  background-color: #f0faff; /* Light blue background for content */
+  padding: 0 15px;
+  border-top: 1px solid #e0f1fa;
+  color: #555555; /* Darker text for readability */
+  border-radius: 0 0 8px 8px;
+}
+
+.accordion-content.open {
+  max-height: 200px; /* Adjust according to your content size */
+  padding: 15px;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.accordion-item.active .arrow {
+  transform: rotate(180deg);
+}
+
+.contact-us-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.contact-us-button {
+  background-color: #1d6fa5; /* Soft blue background */
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-us-button:hover {
+  background-color: #1558b0; /* Darker blue for hover */
+  transform: scale(1.05);
+}
+
+.emergency-sos-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.emergency-sos-button-container button {
+  background-color: #ff3b30; /* Bright red for SOS button */
+  color: #ffffff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.emergency-sos-button-container button:hover {
+  background-color: #e63129; /* Darker red for hover */
+  transform: scale(1.05);
+}
+
+.emergency-location {
+  margin-top: 10px;
+  color: #1d6fa5; /* Soft blue for location display */
+  font-size: 1.1rem;
+}

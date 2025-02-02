@@ -12,7 +12,7 @@ const GrowthAndCustomSection = () => {
   const cards = [
     {
         icon: "/images/versioncontrol.png",
-        title: "AI Prescriptions",
+        title: "AI Generated Prescriptions",
         description:
             "Powered by AI-powered prescriptions, offering personalized treatment plans based on patient history.",
     },
@@ -20,7 +20,7 @@ const GrowthAndCustomSection = () => {
         icon: "/images/calender.png",
         title: "Timely Follow-up Reminders",
         description:
-            "Automated timely follow-up reminders for patients via preferred channels.",
+            "Automated timely follow-up reminders for patients via secure video chat.",
     },
     {
         icon: "/images/tickmark.png",
@@ -97,7 +97,7 @@ const GrowthAndCustomSection = () => {
               objectFit="cover"
               className="absolute inset-0"
             />
-            <div className="text-[35px] md:text-[44px] leading-[48px] font-bold text-center">
+            <div className="text-[35px] md:text-[44px]  font-bold text-center text-white">
               Healing with <span className="text-[#3F98FF]"> Seamless </span>{" "}
               Power{" "}
               <Image src={startIcon} alt="startIcon" className="inline-block" />

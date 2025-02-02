@@ -3,6 +3,7 @@ import GrowthAndCustomSection from "@/components/home/Growth";
 import OurTeam from "@/components/home/OurTeam";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import Testimonials from "@/components/home/Testimonials";
 
 import "@fontsource/space-grotesk";
 
@@ -12,9 +13,8 @@ export default function Home() {
       <div className="sticky top-0 z-50">
       <Navbar />
       </div>
-
       <GrowthAndCustomSection className="mt-12"/>
-      <OurTeam />
+      <Testimonials/>
       <GetInTouch />
       <Footer />
     </div>
